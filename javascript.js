@@ -49,23 +49,33 @@ function play(playerSelection, computerSelection = getComputerChoice()) {
 
 // console.log(getComputerChoice());
 // console.log(play(prompt("Enter your choice!!")));
+function game() {
+    let playerPoints = 0;
+    let computerPoints = 0;
+    for(let i = 0; i < 5; i++) {
+        let roundResult = play(prompt("Enter your choice, Player!"));
+        console.log(roundResult);
+        if(roundResult.startsWith("You Win!")) {
+            playerPoints++;
+        } else if(roundResult.startsWith("You Lose!")){
+            computerPoints++;
+        }
+    }
 
-let playerPoints = 0;
-let computerPoints = 0;
-for(let i = 0; i < 5; i++) {
-    let roundResult = play(prompt("Enter your choice, Player!"));
-    console.log(roundResult);
-    if(roundResult.startsWith("You Win!")) {
-        playerPoints++;
-    } else if(roundResult.startsWith("You Lose!")){
-        computerPoints++;
+    if(playerPoints > computerPoints) {
+        return "\nYou Win!!";
+    } else if(computerPoints > playerPoints) {
+        return "\nComputer Wins!!";
+    } else {
+        return "\nIts a DRAW!!";
     }
 }
 
-if(playerPoints > computerPoints) {
-    console.log("\nYou Win!!")
-} else if(computerPoints > playerPoints) {
-    console.log("\nComputer Wins!!");
-} else {
-    console.log("\nIts a DRAW!!");
-}
+window.addEventListener("DOMContentLoaded", () => {
+    let button = document.getElementById("play");
+    button.addEventListener("click", function() {
+        let result = game();
+        console.log(result);
+        document.getElementsByTagName("h1")[0].innerHTML = result;
+    });
+})
