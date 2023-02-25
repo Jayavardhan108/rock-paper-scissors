@@ -71,11 +71,9 @@ function game() {
     }
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-    let button = document.getElementById("play");
-    button.addEventListener("click", function() {
-        let result = game();
-        console.log(result);
-        document.getElementsByTagName("h1")[0].innerHTML = result;
-    });
-})
+let button = document.getElementById("play");
+button.addEventListener("click", function() {
+    let result = game();
+    console.log(result);
+    document.getElementsByTagName("h1")[0].innerText = result;
+});
